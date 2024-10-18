@@ -1,14 +1,15 @@
-import WebApp from "@twa-dev/sdk";
-import type { WebAppUser } from "@twa-dev/types";
+// import WebApp from "@twa-dev/sdk";
+import type { WebApp, WebAppUser } from "@twa-dev/types";
 
-type useUserDataType = {
+type TUserData = {
   userData: WebAppUser | null;
 };
 
-export function useUserData(): useUserDataType {
+export function useUserData(webApp: WebApp): TUserData {
   let userData: WebAppUser | null = null;
-  if (WebApp.initDataUnsafe.user) {
-    userData = WebApp.initDataUnsafe.user;
+
+  if (webApp.initDataUnsafe.user) {
+    userData = webApp.initDataUnsafe.user;
   } else {
     userData = {
       id: 314159265,

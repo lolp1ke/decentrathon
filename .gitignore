@@ -3,6 +3,7 @@
 
 package-lock.json
 .next
+frontend-2
 
 # dependencies
 node_modules
