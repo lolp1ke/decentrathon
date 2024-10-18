@@ -4,7 +4,7 @@ import { ListIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
-import { CreatePost } from "./createpost";
+import { CreatePost } from "@/components/CreatePost1";
 import { useUserData } from "@/hooks/userData";
 
 interface Props {
