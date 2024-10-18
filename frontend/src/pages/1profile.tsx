@@ -16,8 +16,7 @@ interface Props {
 }
 
 export function Profile({ webApp }: Props) {
-  const { userData, getUserInitials } = useUserData(webApp);
-  const tags: Array<string> = ["rust", "git", "linux"];
+  const { userData, getUserInitials, getUserTags } = useUserData(webApp);
 
   return (
     <Layout webApp={webApp}>
@@ -32,7 +31,7 @@ export function Profile({ webApp }: Props) {
               <div
                 className={"flex flex-wrap gap-3 items-center justify-evenly"}
               >
-                {tags.map((tag, i) => {
+                {getUserTags().map((tag, i) => {
                   if (i + 1 > 5) return;
 
                   return <Badge>{tag}</Badge>;

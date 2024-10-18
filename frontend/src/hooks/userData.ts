@@ -4,6 +4,7 @@ type TUserData = {
   userData: WebAppUser | null;
   isCompany: () => boolean;
   getUserInitials: () => string;
+  getUserTags: () => Array<string>;
 };
 
 export function useUserData(webApp: WebApp): TUserData {
@@ -30,10 +31,14 @@ export function useUserData(webApp: WebApp): TUserData {
       ?.at(0)
       ?.toUpperCase()}`;
   }
+  function getUserTags(): Array<string> {
+    return ["rust", "git", "linux"]; // TODO: Connect with backend
+  }
 
   return {
     userData,
     isCompany,
     getUserInitials,
+    getUserTags,
   };
 }
