@@ -27,9 +27,9 @@ export function useUserData(webApp: WebApp): TUserData {
     return true;
   }
   function getUserInitials(): string {
-    return `${userData?.first_name.at(0)?.toUpperCase()}${userData?.last_name
-      ?.at(0)
-      ?.toUpperCase()}`;
+    return `${userData?.first_name.at(0)?.toUpperCase() || ""}${
+      userData?.last_name?.at(0)?.toUpperCase() || ""
+    }`;
   }
   function getUserTags(): Array<string> {
     return ["rust", "git", "linux"]; // TODO: Connect with backend
