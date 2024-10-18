@@ -8,6 +8,7 @@ type UserData = {
 
 	first_name?: string;
 	last_name?: string;
+	photo_url?: string;
 
 	language_code: string;
 
@@ -23,5 +24,5 @@ export default function page() {
 		}
 	}, []);
 
-	return <>Premium?: {userData?.is_premium}</>;
+	return <>{userData && `Premium?: ${userData.is_premium}`}</>;
 }
