@@ -1,8 +1,9 @@
-// import WebApp from "@twa-dev/sdk";
 import type { WebApp, WebAppUser } from "@twa-dev/types";
 
 type TUserData = {
   userData: WebAppUser | null;
+  isCompany: () => boolean;
+  getUserInitials: () => string;
 };
 
 export function useUserData(webApp: WebApp): TUserData {
@@ -21,7 +22,18 @@ export function useUserData(webApp: WebApp): TUserData {
     };
   }
 
+  function isCompany(): boolean {
+    return true;
+  }
+  function getUserInitials(): string {
+    return `${userData?.first_name.at(0)?.toUpperCase()}${userData?.last_name
+      ?.at(0)
+      ?.toUpperCase()}`;
+  }
+
   return {
     userData,
+    isCompany,
+    getUserInitials,
   };
 }
