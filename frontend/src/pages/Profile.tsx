@@ -56,7 +56,7 @@ export function Profile({ webApp }: Props) {
             <div className={"flex flex-col gap-2"}>
               <CardTitle className={"mb-4"}>Profile</CardTitle>
               <CardDescription>
-                Full name: {userData?.first_name} {userData?.last_name}
+                Full name: {user?.first_name} {user?.last_name}
               </CardDescription>
               <CardDescription>
                 Email: {user?.email || "not provided"}

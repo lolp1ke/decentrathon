@@ -5,14 +5,22 @@ import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 import { CreatePost } from "@/components/CreatePost";
-import { useUserData } from "@/hooks/userData";
+import { TUserProfile, useUserData } from "@/hooks/userData";
+import { useEffect, useState } from "react";
 
 interface Props {
   webApp: WebApp;
 }
 
 export function Navbar({ webApp }: Props) {
-  const { userData, isCompany, getUserInitials } = useUserData(webApp);
+  const [user, setUser] = useState<TUserProfile | null>(null);
+  const { userData, getUserInitials, getUser } = useUserData(webApp);
+
+  useEffect(() => {
+    getUser().then((user) => {
+      setUser(user);
+    });
+  }, []);
 
   return (
     <nav className={"flex gap-4 justify-between items-center"}>
@@ -22,7 +30,7 @@ export function Navbar({ webApp }: Props) {
         </Link>
       </Button>
 
-      {!isCompany() && <CreatePost />}
+      {user?.profile?.type !== "applicant" && <CreatePost />}
 
       <Link to={{ pathname: "/profile" }}>
         <Avatar>

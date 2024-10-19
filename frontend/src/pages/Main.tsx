@@ -49,8 +49,8 @@ export function Main({ webApp }: Props) {
 
   return (
     <Layout webApp={webApp}>
-      <Carousel>
-        <CarouselContent>
+      <Carousel className={"flex"}>
+        <CarouselContent className={"flex justify-center items-center"}>
           {posts.map((post, _) => {
             return (
               <CarouselItem key={post.id}>
