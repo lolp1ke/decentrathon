@@ -30,7 +30,8 @@ export function Navbar({ webApp }: Props) {
         </Link>
       </Button>
 
-      {user?.profile?.type !== "applicant" && <CreatePost />}
+      {(user?.profile?.type !== "applicant" ||
+        import.meta.env.VITE_NODE_ENV === "development") && <CreatePost />}
 
       <Link to={{ pathname: "/profile" }}>
         <Avatar>

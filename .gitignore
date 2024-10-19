@@ -6,7 +6,8 @@ package-lock.json
 frontend-2
 __pycache__/
 teset.py
-
+.env
+.env*
 
 # dependencies
 node_modules

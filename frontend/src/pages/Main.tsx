@@ -55,7 +55,7 @@ export function Main({ webApp }: Props) {
     <Layout webApp={webApp} className={"justify-center items-center h-full"}>
       <Carousel>
         <CarouselContent>
-          {posts.map((post, _) => {
+          {posts?.map((post, _) => {
             return (
               <CarouselItem key={post.id}>
                 <Card>
