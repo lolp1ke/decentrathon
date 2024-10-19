@@ -4,6 +4,9 @@
 package-lock.json
 .next
 frontend-2
+__pycache__/
+teset.py
+
 
 # dependencies
 node_modules
