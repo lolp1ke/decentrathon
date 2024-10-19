@@ -20,11 +20,11 @@ export function Main({ webApp }: Props) {
         }
       })
       .then((posts) => {
-        console.log(posts);
-
         setPosts(posts);
       });
   }, []);
+
+  console.log(posts);
 
   return <Layout webApp={webApp}></Layout>;
 }
