@@ -33,6 +33,8 @@ export function useUserData(webApp: WebApp): TUserData {
   }
 
   if (import.meta.env.VITE_NODE_ENV === "development") {
+    console.log(import.meta.env.VITE_NODE_ENV);
+
     userData = {
       id: 111,
       first_name: "Alibek",
