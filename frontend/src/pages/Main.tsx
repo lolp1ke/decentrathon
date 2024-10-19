@@ -47,8 +47,6 @@ export function Main({ webApp }: Props) {
         }
       })
       .then((posts) => {
-        console.log(posts);
-
         setPosts(posts);
       });
   }, []);

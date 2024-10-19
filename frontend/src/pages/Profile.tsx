@@ -65,7 +65,6 @@ export function Profile({ webApp }: Props) {
                 Specialization:{" "}
                 {user?.profile?.specialization || "not provided"}
               </CardDescription>
-              <CardDescription>Other details // TODO</CardDescription>
             </div>
           </div>
         </CardHeader>
