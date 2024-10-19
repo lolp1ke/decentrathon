@@ -3,9 +3,18 @@ import type { WebApp, WebAppUser } from "@twa-dev/types";
 
 type TUserData = {
   userData: WebAppUser | null;
-  isCompany: () => boolean;
   getUserInitials: () => string;
   getUser: () => Promise<TUserProfile>;
+};
+export type TProfile = {
+  userId: number;
+  id: number;
+
+  type: "company" | "applicant";
+  tags?: Array<string>;
+  contacts?: string;
+  location?: string;
+  specialization?: string;
 };
 export type TUserProfile = {
   id: number;
@@ -13,15 +22,7 @@ export type TUserProfile = {
   last_name?: string;
   email?: string;
 
-  profile?: {
-    userId: number;
-    id: number;
-
-    tags?: Array<string>;
-    contacts?: string;
-    location?: string;
-    specialization?: string;
-  };
+  profile?: TProfile;
 };
 
 export function useUserData(webApp: WebApp): TUserData {
@@ -31,7 +32,9 @@ export function useUserData(webApp: WebApp): TUserData {
     userData = webApp.initDataUnsafe.user;
   }
 
-  if (import.meta.env.NODE_ENV !== "production") {
+  if (import.meta.env.VITE_NODE_ENV === "development") {
+    console.log(import.meta.env.VITE_NODE_ENV);
+
     userData = {
       id: 111,
       first_name: "Alibek",
@@ -42,9 +45,6 @@ export function useUserData(webApp: WebApp): TUserData {
     };
   }
 
-  function isCompany(): boolean {
-    return true;
-  }
   function getUserInitials(): string {
     return `${userData?.first_name.at(0)?.toUpperCase() || ""}${
       userData?.last_name?.at(0)?.toUpperCase() || ""
@@ -63,7 +63,6 @@ export function useUserData(webApp: WebApp): TUserData {
 
   return {
     userData,
-    isCompany,
     getUserInitials,
     getUser,
   };

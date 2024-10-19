@@ -9,7 +9,7 @@ import {
   Query,
 } from "@nestjs/common";
 
-import { UserService } from "@/modules/user/user.service";
+import { UserService } from "./user.service";
 
 import type { CreateUserDto, GetUserDto } from "./dto";
 import type { user } from "@prisma/client";

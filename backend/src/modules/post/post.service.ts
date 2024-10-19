@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
 
-import { PrismaService } from "@/modules/prisma/prisma.service";
+import { PrismaService } from "../prisma/prisma.service";
 
 import type { CreatePostDto } from "./dto";
 import type { post, profile } from "@prisma/client";
@@ -36,6 +36,10 @@ export class PostService {
 
   // TODO: implement filter, skip and take
   public async getAll(): Promise<Array<post>> {
-    return this.prismaService.post.findMany();
+    return this.prismaService.post.findMany({
+      include: {
+        profile: true,
+      },
+    });
   }
 }

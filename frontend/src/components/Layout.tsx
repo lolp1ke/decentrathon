@@ -16,7 +16,7 @@ export function Layout({ children, className, webApp }: Props) {
 
   return (
     <main className={"flex flex-1 flex-col gap-2 w-full p-3"}>
-      <section className={`flex flex-1 flex-col ${className}`}>
+      <section className={`flex flex-1 flex-col ${className || ""}`}>
         {children}
       </section>
       <Navbar webApp={webApp} />

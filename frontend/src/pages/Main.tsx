@@ -15,6 +15,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import type { TProfile } from "@/hooks/userData";
+import { Badge } from "@/components/ui/badge";
 
 interface Props {
   webApp: WebApp;
@@ -28,6 +30,8 @@ export type Post = {
   description: string;
   position: string;
   salary: number;
+
+  profile: TProfile;
 };
 
 export function Main({ webApp }: Props) {
@@ -43,12 +47,14 @@ export function Main({ webApp }: Props) {
         }
       })
       .then((posts) => {
+        console.log(posts);
+
         setPosts(posts);
       });
   }, []);
 
   return (
-    <Layout webApp={webApp}>
+    <Layout webApp={webApp} className={"justify-center items-center h-full"}>
       <Carousel>
         <CarouselContent>
           {posts.map((post, _) => {
@@ -58,12 +64,34 @@ export function Main({ webApp }: Props) {
                   <CardHeader>
                     <CardTitle>{post.title}</CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className={"flex flex-col gap-2"}>
                     <CardDescription>Position: {post.position}</CardDescription>
-                    <CardDescription>Salary: {post.salary}</CardDescription>
-                    <CardDescription className={"mt-4"}>
-                      {post.description}
+                    <CardDescription>
+                      Specialization: {post.profile.specialization}
                     </CardDescription>
+                    <div
+                      className={
+                        "flex flex-wrap gap-2 justify-start items-center"
+                      }
+                    >
+                      <CardDescription className={"mr-2"}>
+                        Tags:{" "}
+                      </CardDescription>
+
+                      {post.profile.tags?.map((tag, i) => {
+                        return (
+                          <Badge key={`${tag}-${i}`} className={"text-center"}>
+                            {tag}
+                          </Badge>
+                        );
+                      })}
+                    </div>
+
+                    <CardDescription>Salary: {post.salary}$</CardDescription>
+                    <div className={"mt-4"}>
+                      <CardDescription>Description:</CardDescription>
+                      <CardDescription>{post.description}</CardDescription>
+                    </div>
                   </CardContent>
                 </Card>
               </CarouselItem>
