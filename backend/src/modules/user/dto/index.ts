@@ -1,6 +1,6 @@
 export enum Type {
   company,
-  chel,
+  applicant,
 }
 
 export class CreateUserDto {
