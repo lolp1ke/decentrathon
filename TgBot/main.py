@@ -5,6 +5,7 @@ import cohere
 import requests
 
 template_dictionary = {"telegramId": None, "type": None, "name": None,"email": None, "specialization": None, "tags": None}
+employer_dictionary = template_dictionary
 
 def pdf_to_text():
   Image.MAX_IMAGE_PIXELS = 2000000000
@@ -24,7 +25,7 @@ def pdf_to_text():
     
 def analyse_cv():
   text_of_cv = pdf_to_text()
-  output_format = '[Name(str double quotes): string, Email(str): string, Major(str): list of strings(no more than 20 characters), Programing_skills: list of strings (no more than five elements)]'
+  output_format = '[Name(str): string, Email(str): string, Major(str): list of strings(no more than 20 characters), Programming_skills: list of strings (no more than five elements)]'
   promt = "Please be brief. Anylyse next CV, make ouptut in format python dictionary. \
           Output dictionary and with elements that mentined in blueprint, \
           Next given sample of output format and then after given cv text" 
@@ -47,23 +48,31 @@ def analyse_cv():
   job_applicant_dictionary["name"] = temproary_dictionary["Name"]
   job_applicant_dictionary["email"] = temproary_dictionary["Email"]
   job_applicant_dictionary['specialization'] = temproary_dictionary['Major'][0]
-  job_applicant_dictionary['tags'] = temproary_dictionary['Programing_skills']
+  job_applicant_dictionary['tags'] = temproary_dictionary['Programming_skills']
   return job_applicant_dictionary
 
-
+def fill_company_dictinoary(key, value):
+  employer_dictionary[key] = value
 
 def send_to_database(user_type, tg_id):
-  if(user_type):
+  global employer_dictionary
+
+  if(user_type == 'job applicant'):
     user_dictinoary = analyse_cv()
-  else:
-    pass
+
+  elif(user_type == 'employer'):
+    user_dictinoary = employer_dictionary
+    user_dictinoary['type'] = 'company'
 
   user_dictinoary["telegramId"] = tg_id
+  print(user_dictinoary)
   r = requests.post("http://127.0.0.1:5000/user/create", data = user_dictinoary)
+
   if(r.status_code == 201):
     print("Sended")
   else:
-    print(r)
+    print(r.reason)
+  employer_dictionary = template_dictionary
 
 co = cohere.Client('AH0agiBtbhKCBApQrt9OscLj22VjX6JV0O9KBwrN')
 
