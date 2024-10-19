@@ -34,7 +34,7 @@ export function Profile({ webApp }: Props) {
                 {getUserTags().map((tag, i) => {
                   if (i + 1 > 5) return;
 
-                  return <Badge>{tag}</Badge>;
+                  return <Badge key={`${tag}-${i}`}>{tag}</Badge>;
                 })}
               </div>
             </div>

@@ -12,7 +12,9 @@ export function useUserData(webApp: WebApp): TUserData {
 
   if (webApp.initDataUnsafe.user) {
     userData = webApp.initDataUnsafe.user;
-  } else {
+  }
+
+  if (import.meta.env.NODE_ENV !== "production") {
     userData = {
       id: 314159265,
       first_name: "Alibek",
