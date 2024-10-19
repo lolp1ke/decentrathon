@@ -51,9 +51,8 @@ async def analyse_cv(msg: Message):
 
     if(name.endswith('.pdf') and access_to_anylyse_cv):
         await bot.download(file = cv, destination = "user_cv.pdf")
-        text = main.send_to_database(tg_id = 111, user_type = True)
+        main.send_to_database(tg_id = 111, user_type = True)
         await msg.answer("You have been sign in")
-        await msg.answer(text)
 
     elif(access_to_anylyse_cv):
         await msg.answer("It is not pdf file")
