@@ -48,7 +48,9 @@ def analyse_cv():
   job_applicant_dictionary["name"] = temproary_dictionary["Name"]
   job_applicant_dictionary["email"] = temproary_dictionary["Email"]
   job_applicant_dictionary['specialization'] = temproary_dictionary['Major'][0]
-  job_applicant_dictionary['tags'] = temproary_dictionary['Programming_skills']
+
+  tags = temproary_dictionary['Programming_skills']
+  job_applicant_dictionary['tags'] = tags if len(tags) > 1 else tags.append([' ', ' '])
   return job_applicant_dictionary
 
 def fill_company_dictinoary(key, value):
@@ -66,7 +68,7 @@ def send_to_database(user_type, tg_id):
 
   user_dictinoary["telegramId"] = tg_id
   print(user_dictinoary)
-  r = requests.post("http://127.0.0.1:5000/user/create", data = user_dictinoary)
+  r = requests.post("https://decentrathon-rx92.vercel.app/user/create", data = user_dictinoary)
 
   if(r.status_code == 201):
     print("Sended")
