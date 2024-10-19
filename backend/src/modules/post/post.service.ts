@@ -36,6 +36,10 @@ export class PostService {
 
   // TODO: implement filter, skip and take
   public async getAll(): Promise<Array<post>> {
-    return this.prismaService.post.findMany();
+    return this.prismaService.post.findMany({
+      include: {
+        profile: true,
+      },
+    });
   }
 }

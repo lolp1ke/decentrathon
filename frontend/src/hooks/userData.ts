@@ -6,22 +6,23 @@ type TUserData = {
   getUserInitials: () => string;
   getUser: () => Promise<TUserProfile>;
 };
+export type TProfile = {
+  userId: number;
+  id: number;
+
+  type: "company" | "applicant";
+  tags?: Array<string>;
+  contacts?: string;
+  location?: string;
+  specialization?: string;
+};
 export type TUserProfile = {
   id: number;
   first_name: string;
   last_name?: string;
   email?: string;
 
-  profile?: {
-    userId: number;
-    id: number;
-
-    type: "company" | "applicant";
-    tags?: Array<string>;
-    contacts?: string;
-    location?: string;
-    specialization?: string;
-  };
+  profile?: TProfile;
 };
 
 export function useUserData(webApp: WebApp): TUserData {
