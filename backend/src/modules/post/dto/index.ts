@@ -1,9 +1,9 @@
-import { IsNotEmpty, IsNumber } from "class-validator";
+import { IsNotEmpty, IsNumberString } from "class-validator";
 
 export class CreatePostDto {
   @IsNotEmpty()
-  @IsNumber()
-  profileId: number;
+  @IsNumberString()
+  profileId: string;
 
   @IsNotEmpty()
   title: string;
@@ -12,8 +12,8 @@ export class CreatePostDto {
   description: string;
 
   @IsNotEmpty()
-  @IsNumber()
-  salary: number;
+  @IsNumberString()
+  salary: string;
 
   @IsNotEmpty()
   position: string;

@@ -10,8 +10,11 @@ export class PostService {
   constructor(private readonly prismaService: PrismaService) {}
 
   public async create(dto: CreatePostDto): Promise<post> {
+    const profileId = parseInt(dto.profileId);
+    const salary = parseFloat(dto.salary);
+
     const profile: profile = await this.prismaService.profile.findUnique({
-      where: { id: dto.profileId },
+      where: { id: profileId },
     });
     if (!profile) throw new BadRequestException("Failed to find profile");
 
@@ -19,13 +22,13 @@ export class PostService {
       data: {
         profile: {
           connect: {
-            id: dto.profileId,
+            id: profileId,
           },
         },
 
         title: dto.title,
         description: dto.description,
-        salary: dto.salary,
+        salary,
         position: dto.position,
       },
     });

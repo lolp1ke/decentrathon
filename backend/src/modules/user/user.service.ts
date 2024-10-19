@@ -10,14 +10,15 @@ export class UserService {
   constructor(private readonly prismaService: PrismaService) {}
 
   public async create(dto: CreateUserDto): Promise<user> {
+    const tgId = parseInt(dto.telegramId);
     const user: user = await this.prismaService.user.findUnique({
-      where: { id: dto.telegramId },
+      where: { id: tgId },
     });
     if (user) throw new BadRequestException("User already exist");
 
     return this.prismaService.user.create({
       data: {
-        id: dto.telegramId,
+        id: tgId,
 
         first_name: dto.name,
         email: dto.email,

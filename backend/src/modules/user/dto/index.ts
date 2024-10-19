@@ -4,7 +4,7 @@ export enum Type {
 }
 
 export class CreateUserDto {
-  telegramId: number;
+  telegramId: string;
 
   type: Type;
 
