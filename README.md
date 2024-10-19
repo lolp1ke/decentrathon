@@ -1,6 +1,6 @@
 # How to launch the app?
 
-# Backend
+### Backend
 
 ```sh
 cd backend
@@ -11,7 +11,7 @@ npm run start
 # Or "npm run start:dev"
 ```
 
-# Frontend
+### Frontend
 
 ```sh
 cd frontend
@@ -24,7 +24,7 @@ npm run dev
 
 ```
 
-# Python script
+### Python script
 
 ```sh
 cd TgBot
