@@ -3,7 +3,6 @@ from aiogram.types import *
 from aiogram.filters import Command
 from aiogram import F
 import main
-import requests
 
 TOKEN = "8091528973:AAH12wS_L26v6qWEix6c_cHQb9zK7xtJXDY"
 
