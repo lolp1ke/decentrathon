@@ -3,7 +3,7 @@ import { ValidationPipe } from "@nestjs/common";
 import type { NestExpressApplication } from "@nestjs/platform-express";
 import "dotenv/config";
 
-import { AppModule } from "@/app.module";
+import { AppModule } from "./app.module";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);

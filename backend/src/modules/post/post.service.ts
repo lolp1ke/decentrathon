@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
 
-import { PrismaService } from "@/modules/prisma/prisma.service";
+import { PrismaService } from "../prisma/prisma.service";
 
 import type { CreatePostDto } from "./dto";
 import type { post, profile } from "@prisma/client";

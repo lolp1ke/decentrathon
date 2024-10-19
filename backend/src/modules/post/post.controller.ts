@@ -7,7 +7,7 @@ import {
   Post,
 } from "@nestjs/common";
 
-import { PostService } from "@/modules/post/post.service";
+import { PostService } from "./post.service";
 
 import type { CreatePostDto } from "./dto";
 import type { post } from "@prisma/client";
