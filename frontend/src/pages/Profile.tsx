@@ -44,7 +44,11 @@ export function Profile({ webApp }: Props) {
                   user.profile.tags?.map((tag, i) => {
                     if (i + 1 > 5) return;
 
-                    return <Badge key={`${tag}-${i}`}>{tag}</Badge>;
+                    return (
+                      <Badge key={`${tag}-${i}`} className={"text-center"}>
+                        {tag}
+                      </Badge>
+                    );
                   })}
               </div>
             </div>

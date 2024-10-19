@@ -32,12 +32,18 @@ model session {
   user   user   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
+enum ProfileType {
+  company
+  applicant
+}
+
 model profile {
   id Int @id @default(autoincrement())
 
   userId String @unique
   user   user   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
+  type           ProfileType @default(applicant)
   specialization String?
   contacts       String?
   location       String?

@@ -1,3 +1,5 @@
+import { ProfileType } from "@prisma/client";
+
 export enum Type {
   company,
   applicant,
@@ -6,7 +8,7 @@ export enum Type {
 export class CreateUserDto {
   telegramId: string;
 
-  type: Type;
+  type: ProfileType;
 
   name: string;
   email: string;

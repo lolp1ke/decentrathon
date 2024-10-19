@@ -28,6 +28,8 @@ export class UserService {
 
         profile: {
           create: {
+            type: dto.type,
+
             specialization: dto.specialization || "",
             tags: dto.tags || [],
           },
