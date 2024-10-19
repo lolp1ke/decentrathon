@@ -25,11 +25,12 @@ npm run dev
 ```
 
 ### Python script
+
 ---
+
 #### Prerequisites:
 
 Windows users will have to build or download poppler for Windows. I recommend @oschwartz10612 version which is the most up-to-date. You will then have to add the bin/ folder to PATH or use poppler_path = r"C:\path\to\poppler-xx\bin" as an argument in convert_from_path.
-
 
 Python-tesseract requires Python 3.6+
 
