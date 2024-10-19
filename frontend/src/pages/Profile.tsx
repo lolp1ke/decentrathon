@@ -7,16 +7,24 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useUserData } from "@/hooks/userData";
+import { TUserProfile, useUserData } from "@/hooks/userData";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { useEffect, useState } from "react";
 
 interface Props {
   webApp: WebApp;
 }
 
 export function Profile({ webApp }: Props) {
-  const { userData, getUserInitials, getUserTags } = useUserData(webApp);
+  const [user, setUser] = useState<TUserProfile | null>(null);
+  const { userData, getUserInitials, getUser } = useUserData(webApp);
+
+  useEffect(() => {
+    getUser().then((user) => {
+      setUser(user);
+    });
+  }, []);
 
   return (
     <Layout webApp={webApp}>
@@ -31,11 +39,13 @@ export function Profile({ webApp }: Props) {
               <div
                 className={"flex flex-wrap gap-3 items-center justify-evenly"}
               >
-                {getUserTags().map((tag, i) => {
-                  if (i + 1 > 5) return;
+                {user &&
+                  user.profile &&
+                  user.profile.tags?.map((tag, i) => {
+                    if (i + 1 > 5) return;
 
-                  return <Badge key={`${tag}-${i}`}>{tag}</Badge>;
-                })}
+                    return <Badge key={`${tag}-${i}`}>{tag}</Badge>;
+                  })}
               </div>
             </div>
 
@@ -44,11 +54,13 @@ export function Profile({ webApp }: Props) {
               <CardDescription>
                 Full name: {userData?.first_name} {userData?.last_name}
               </CardDescription>
-              <CardDescription>Other details // TODO</CardDescription>
-              <CardDescription>Other details // TODO</CardDescription>
-              <CardDescription>Other details // TODO</CardDescription>
-              <CardDescription>Other details // TODO</CardDescription>
-              <CardDescription>Other details // TODO</CardDescription>
+              <CardDescription>
+                Email: {user?.email || "not provided"}
+              </CardDescription>
+              <CardDescription>
+                Specialization:{" "}
+                {user?.profile?.specialization || "not provided"}
+              </CardDescription>
               <CardDescription>Other details // TODO</CardDescription>
             </div>
           </div>

@@ -14,3 +14,7 @@ export class CreateUserDto {
   specialization?: string;
   tags: Array<string>;
 }
+
+export class GetUserDto {
+  telegramId: string;
+}

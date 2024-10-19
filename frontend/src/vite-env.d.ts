@@ -2,7 +2,7 @@
 
 interface ImportMetaEnv {
   readonly NODE_ENV?: "production" | "development";
-  readonly BACKEND_PREFIX?: string;
+  readonly VITE_BACKEND_PREFIX?: string;
 }
 
 interface ImportMeta {

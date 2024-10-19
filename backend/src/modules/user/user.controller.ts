@@ -1,8 +1,17 @@
-import { Body, Controller, HttpCode, HttpStatus, Post } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Post,
+  Query,
+} from "@nestjs/common";
 
 import { UserService } from "@/modules/user/user.service";
 
-import type { CreateUserDto } from "./dto";
+import type { CreateUserDto, GetUserDto } from "./dto";
 import type { user } from "@prisma/client";
 
 @Controller("/user")
@@ -13,5 +22,11 @@ export class UserController {
   @HttpCode(HttpStatus.CREATED)
   public async create(@Body() dto: CreateUserDto): Promise<user> {
     return this.userService.create(dto);
+  }
+
+  @Get("/get/:id")
+  @HttpCode(HttpStatus.OK)
+  public async get(@Param("id") dto: string): Promise<user> {
+    return this.userService.get(dto);
   }
 }
