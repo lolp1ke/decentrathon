@@ -3,9 +3,9 @@
 
 package-lock.json
 .next
-frontend-2
 __pycache__/
 venv/
+user_cv.pdf
 teset.py
 .env
 .env*
