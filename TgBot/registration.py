@@ -92,8 +92,8 @@ async def step_3(query: CallbackQuery):
 
 @dp.callback_query(F.data.contains('finish'))    
 async def finish_employer_registration(query: CallbackQuery):
+    await query.message.delete()
     await query.message.answer('You finished registration of company')
-    main.send_to_database(tg_id = query.message.from_user.id, user_type = 'employer')
 
 @dp.message()
 async def input_company_information(msg: Message):
@@ -115,8 +115,7 @@ async def input_company_information(msg: Message):
         is_step_3 = False
 
         main.fill_company_dictinoary(key = 'email', value = email_of_company)
-        
-        
+        main.send_to_database(tg_id = msg.from_user.id, user_type = 'employer')
         await msg.answer("You finished step 3, are you want to continue or finish registration", reply_markup = InlineKeyboardMarkup(inline_keyboard = are_you_finish))
         return 0
     
